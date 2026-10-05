@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | InovaTech</title>
+    <meta name="description" content="Acesse sua conta InovaTech ou cadastre-se para participar do projeto."/>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="styles/mobile.css" />
+  </head>
+  <body data-page="login">
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a href="index.html" class="logo">
+          <span>InovaTech</span>
+        </a>
+        <nav class="main-nav" aria-label="Menu principal">
+          <a href="index.html">Início</a>
+          <a href="sobre.html">Sobre</a>
+          <a href="servicos.html">Serviços</a>
+          <a href="login.html" class="btn btn-login">Login</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="auth-section">
+        <div class="container auth-container">
+          <div class="auth-card">
+            <div class="auth-tabs" role="tablist" aria-label="Autenticação">
+              <button class="tab-btn active" data-target="loginForm" type="button">Entrar</button>
+              <button class="tab-btn" data-target="registerForm" type="button">Criar conta</button>
+            </div>
+
+            <div class="auth-panel active" id="loginFormPanel">
+              <h1>Entrar</h1>
+              <form id="loginForm" class="auth-form">
+                <div class="input-group">
+                  <label for="loginEmail">E-mail</label>
+                  <input id="loginEmail" name="loginEmail" type="email" placeholder="seu@email.com" required />
+                </div>
+
+                <div class="input-group">
+                  <label for="loginSenha">Senha</label>
+                  <input id="loginSenha" name="loginSenha" type="password" placeholder="Sua senha" required />
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+                <p class="helper-text"><a href="#">Esqueceu sua senha?</a></p>
+                <p class="helper-text">Ainda não possui cadastro? <a href="#" class="switch-form">Criar conta</a></p>
+              </form>
+            </div>
+
+            <div class="auth-panel" id="registerFormPanel">
+              <h2>Criar conta</h2>
+              <form id="registerForm" class="auth-form">
+                <div class="input-group">
+                  <label for="nomeUsuario">Nome</label>
+                  <input id="nomeUsuario" name="nomeUsuario" type="text" placeholder="Seu nome completo" required />
+                </div>
+
+                <div class="input-group">
+                  <label for="registerEmail">E-mail</label>
+                  <input id="registerEmail" name="registerEmail" type="email" placeholder="seu@email.com" required />
+                </div>
+
+                <div class="input-group">
+                  <label for="registerSenha">Senha</label>
+                  <input id="registerSenha" name="registerSenha" type="password" placeholder="Crie uma senha" required />
+                </div>
+
+                <div class="input-group">
+                  <label for="confirmarSenha">Confirmar senha</label>
+                  <input id="confirmarSenha" name="confirmarSenha" type="password" placeholder="Repita a senha" required />
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">Cadastrar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-content">
+        <p>InovaTech | ODS 9 | 2026</p>
+      </div>
+    </footer>
+
+    <script src="scripts/script.js"></script>
+  </body>
+</html>
