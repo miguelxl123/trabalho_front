@@ -1,0 +1,682 @@
+﻿/* ==================== VARIAVEIS E CONFIGURACOES GERAIS ==================== */
+/* Variaveis reutilizaveis: centralizam cores, sombras e tamanhos do projeto. */
+:root {
+  /* Cores de fundo usadas nas paginas e nas secoes. */
+  --bg: #f4f7fb;
+  --bg-strong: #eef4ff;
+  --surface: rgb(255, 255, 255);
+  --surface-alt: #ecf5ff;
+  /* Cor principal, cor de apoio e cor de destaque. */
+  --primary: #1d4ed8;
+  --primary-dark: #163ea8;
+  --secondary: #14b8a6;
+  --accent: #f59e0b;
+  /* Cores para textos, bordas e elementos secundarios. */
+  --text: #11213a;
+  --muted: #5a697d;
+  --border: rgba(17, 33, 58, 0.08);
+  /* Padroes visuais compartilhados por varios componentes. */
+  --shadow: 0 18px 40px rgba(30, 64, 175, 0.12);
+  --radius-lg: 28px;
+  --radius-md: 18px;
+  --radius-sm: 12px;
+}
+
+/* ==================== RESET E ELEMENTOS GERAIS ==================== */
+/* Faz padding e borda entrarem no calculo total da largura dos elementos. */
+* {
+  box-sizing: border-box;
+}
+
+/* Ativa a rolagem suave para links internos da pagina. */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Estilos basicos de toda a pagina. */
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* Links herdam a cor do contexto e nao exibem sublinhado por padrao. */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Impede que imagens ultrapassem o tamanho do elemento pai. */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Mantem os controles de formulario com a mesma tipografia do restante da pagina. */
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+/* Define uma largura maxima e centraliza o conteudo principal. */
+.container {
+  width: min(1120px, calc(100% - 2rem));
+  margin: 0 auto;
+}
+
+/* ==================== HEADER E NAVEGACAO ==================== */
+/* Cabecalho fixo durante a rolagem, com transparencia e desfoque. */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  min-height: 112px;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.84), rgba(255, 255, 255, 0.84)),
+    url('../images/headerimage.jpg') center 42% / cover no-repeat;
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Organiza logo e menu lado a lado e controla a altura do cabecalho. */
+.nav-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 112px;
+  gap: 1rem;
+}
+
+/* Identidade visual do nome da marca. */
+.logo {
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: var(--primary-dark);
+}
+
+/* Menu horizontal com espacamento e quebra de linha quando necessario. */
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+/* Aparencia dos links do menu e transicao da cor ao interagir. */
+.main-nav a {
+  color: var(--text);
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+/* Destaca links do menu quando recebem foco pelo teclado ou mouse. */
+.main-nav a:hover,
+.main-nav a:focus-visible {
+  color: var(--primary);
+}
+
+/* ==================== BOTOES ==================== */
+/* Estilo base compartilhado por todos os botoes. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 999px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+/* Move levemente o botao para cima ao passar o mouse. */
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+/* Botao menor, usado principalmente no acesso ao login. */
+.btn-login {
+  padding: 0.7rem 1.1rem;
+  background: var(--primary);
+  color: #fff;
+}
+
+/* Botao principal com gradiente, espacamento e sombra de destaque. */
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: #fff;
+  padding: 1rem 1.6rem;
+  box-shadow: var(--shadow);
+}
+
+/* Faz o botao ocupar toda a largura disponivel. */
+.btn-block {
+  width: 100%;
+  padding: 0.9rem 1.1rem;
+}
+
+/* ==================== PAGINA INICIAL: HERO ==================== */
+/* Area de destaque inicial da pagina, com fundo suave e espacamento vertical. */
+.hero {
+  background: linear-gradient(135deg, #edf4ff 0%, #ffffff 45%, #f1fbff 100%);
+  padding: 4rem 0 3rem;
+}
+
+/* Divide o destaque em texto e painel visual. */
+.hero-content {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* Pequeno rotulo em caixa alta acima dos titulos. */
+.eyebrow {
+  display: inline-block;
+  margin-bottom: 0.8rem;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
+/* Versao do rotulo usada sobre fundos claros. */
+.eyebrow.dark {
+  color: var(--primary-dark);
+}
+
+/* Titulo principal responsivo da pagina inicial. */
+.hero-text h1 {
+  margin: 0;
+  font-size: clamp(2.3rem, 4vw, 4.5rem);
+  line-height: 1.1;
+  letter-spacing: -0.05em;
+}
+
+/* Texto de introducao com largura limitada para facilitar a leitura. */
+.intro {
+  margin: 1.2rem 0 1.8rem;
+  max-width: 650px;
+  font-size: 1.08rem;
+  color: var(--muted);
+}
+
+/* Painel decorativo da area inicial. */
+.hero-card {
+  position: relative;
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(29, 78, 216, 0.1), rgba(20, 184, 166, 0.08));
+  border: 1px solid rgba(29, 78, 216, 0.08);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+/* Circulos decorativos posicionados dentro do painel visual. */
+.circle {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(10px);
+}
+
+.circle-one {
+  width: 220px;
+  height: 220px;
+  background: rgba(20, 184, 166, 0.2);
+  top: 40px;
+  right: 60px;
+}
+
+.circle-two {
+  width: 180px;
+  height: 180px;
+  background: rgba(29, 78, 216, 0.22);
+  bottom: 40px;
+  left: 50px;
+}
+
+/* Cartao central que fica sobre os circulos decorativos. */
+.mini-panel {
+  position: relative;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(17, 33, 58, 0.06);
+  border-radius: 22px;
+  padding: 2rem 1.6rem;
+  box-shadow: 0 18px 36px rgba(17, 33, 58, 0.08);
+  width: min(85%, 340px);
+  text-align: center;
+}
+
+/* Rotulo pequeno exibido dentro do cartao central. */
+.panel-label {
+  display: block;
+  margin-bottom: 0.6rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primary);
+  font-weight: 800;
+}
+
+/* Texto principal do cartao central. */
+.mini-panel strong {
+  font-size: 1.5rem;
+  line-height: 1.3;
+}
+
+/* ==================== SECOES, CARDS E CONTEUDO ==================== */
+/* Espacamento vertical padrao das secoes. */
+.section {
+  padding: 5rem 0;
+}
+
+/* Alterna o fundo de algumas secoes para criar separacao visual. */
+.section.alt {
+  background: var(--surface);
+}
+
+/* Espacamento abaixo do cabecalho de cada secao. */
+.section-heading {
+  margin-bottom: 2rem;
+}
+
+/* Centraliza cabecalhos que usam a classe auxiliar center. */
+.section-heading.center {
+  text-align: center;
+}
+
+/* Titulos de secao com tamanho responsivo. */
+.section-heading h2 {
+  margin: 0;
+  font-size: clamp(2rem, 3vw, 3rem);
+  letter-spacing: -0.04em;
+}
+
+/* Grade generica para cartoes, com espacamento entre os itens. */
+.card-grid {
+  display: grid;
+  gap: 1.4rem;
+}
+
+/* Grade com tres colunas. */
+.card-grid.triple {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* Grade com quatro colunas. */
+.card-grid.four {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+/* Aparencia comum dos cartoes de informacao, recursos e conteudo. */
+.info-card,
+.feature-card,
+.about-block {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: 0 12px 28px rgba(17, 33, 58, 0.04);
+}
+
+/* Cartoes de informacao com espacamento interno e texto centralizado. */
+.info-card,
+.feature-card {
+  padding: 2rem 1.4rem;
+  text-align: center;
+}
+
+/* Icones circulares usados para representar cada tema. */
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(29, 78, 216, 0.16), rgba(20, 184, 166, 0.14));
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+}
+
+/* Ajusta as imagens dos servicos dentro do espaco circular dos icones. */
+.icon img {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  object-fit: contain;
+}
+
+/* Imagens tematicas dos info-card, com tamanho e recorte uniformes. */
+.info-image {
+  width: 90px;
+  height: 90px;
+  margin: 0 auto 1rem;
+  border-radius: 16px;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Titulos dos cartoes e dos blocos de conteudo. */
+.info-card h3,
+.feature-card h3,
+.about-block h2 {
+  margin: 0 0 0.8rem;
+  font-size: 1.35rem;
+}
+
+/* Textos secundarios dos cartoes e itens de ideia. */
+.info-card p,
+.about-block p {
+  margin: 0;
+  color: var(--muted);
+}
+
+/* Lista sem marcadores organizada em duas colunas. */
+.contribute-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+/* Cada item da lista de contribuicoes recebe fundo, borda e espacamento. */
+.contribute-list li {
+  background: linear-gradient(135deg, rgba(29, 78, 216, 0.08), rgba(20, 184, 166, 0.08));
+  border: 1px solid rgba(29, 78, 216, 0.08);
+  border-radius: var(--radius-md);
+  padding: 1.1rem 1.3rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* ==================== PAGINA DE SERVICOS ==================== */
+/* Texto introdutorio da faixa de servicos, com largura confortavel para leitura. */
+.services-lead {
+  max-width: 700px;
+  margin: 1.2rem 0 0;
+  color: var(--muted);
+  font-size: 1.08rem;
+}
+
+/* Destaca a faixa de servicos com um fundo azul-esverdeado suave. */
+.services-banner {
+  background: linear-gradient(180deg, #edf4ff, #f1fbff);
+}
+
+/* Ajusta os cartoes de servicos para distribuir numero, icone e conteudo. */
+.services-grid {
+  align-items: stretch;
+}
+
+.service-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Mantem os textos dos cartoes alinhados mesmo com descricoes de tamanhos diferentes. */
+.service-card p {
+  margin: 0;
+  color: var(--muted);
+}
+
+/* Lista visual das etapas de atendimento do projeto. */
+.service-steps {
+  display: grid;
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.service-steps li {
+  display: grid;
+  gap: 0.15rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.service-steps li:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.service-steps strong {
+  color: var(--primary-dark);
+}
+
+.service-steps span {
+  color: var(--muted);
+}
+
+/* Centraliza a chamada final para participacao no projeto. */
+.center-content {
+  text-align: center;
+}
+
+.services-cta {
+  background: linear-gradient(135deg, #edf4ff, #ecf5ff);
+}
+
+.services-cta h2 {
+  margin: 0 auto 1rem;
+  max-width: 700px;
+  font-size: clamp(2rem, 3vw, 3rem);
+}
+
+.services-cta p {
+  margin: 0 auto 1.6rem;
+  max-width: 620px;
+  color: var(--muted);
+}
+
+/* ==================== PAGINA SOBRE ==================== */
+/* Faixa de titulo usada nas paginas internas. */
+.page-banner {
+  padding: 4rem 0 2rem;
+  background: linear-gradient(180deg, #ffeef0, #fff8f8);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Titulo responsivo da faixa de pagina. */
+.page-banner h1 {
+  margin: 0;
+  font-size: clamp(2.1rem, 3vw, 3.4rem);
+  letter-spacing: -0.05em;
+}
+
+/* Grade de duas colunas para blocos de conteudo. */
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.4rem;
+}
+
+/* Bloco de conteudo da pagina Sobre. */
+.about-block {
+  padding: 1.6rem;
+}
+
+/* Lista de publico-alvo sem marcadores padrao do navegador. */
+.lista-nomes {
+  margin: 0;
+  padding-left: 1rem;
+  list-style: none;
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* Cria distancia entre os itens do publico-alvo. */
+.lista-nomes li {
+  margin-bottom: 0.7rem;
+}
+
+/* ==================== FORMULARIOS E AUTENTICACAO ==================== */
+/* Empilha os campos do formulario de autenticacao. */
+.auth-form {
+  display: grid;
+  gap: 1rem;
+}
+
+/* Agrupa label e campo em uma pequena grade vertical. */
+.input-group {
+  display: grid;
+  gap: 0.45rem;
+}
+
+/* Destaca visualmente os textos que identificam os campos. */
+.label,
+.input-group label {
+  font-weight: 600;
+}
+
+/* Aparencia comum dos campos de texto, selecao e area de texto. */
+.input-group input,
+.input-group select,
+.input-group textarea {
+  width: 100%;
+  border: 1px solid rgba(17, 33, 58, 0.12);
+  border-radius: var(--radius-sm);
+  background: #fff;
+  padding: 0.9rem 1rem;
+  color: var(--text);
+}
+
+/* Indica qual campo esta ativo durante a navegacao ou digitacao. */
+.input-group input:focus,
+.input-group select:focus,
+.input-group textarea:focus {
+  outline: 2px solid rgba(29, 78, 216, 0.2);
+  border-color: rgba(29, 78, 216, 0.38);
+}
+
+/* Frase de encerramento exibida no lugar do formulario de ideias. */
+.idea-message p {
+  margin: 0;
+  text-align: center;
+  font-size: clamp(1.4rem, 2.5vw, 2.2rem);
+  font-weight: 700;
+  color: var(--primary-dark);
+}
+
+/* Define o espacamento da area de autenticacao. */
+.auth-section {
+  padding: 4rem 0;
+}
+
+/* Centraliza o cartao de autenticacao na pagina. */
+.auth-container {
+  display: flex;
+  justify-content: center;
+}
+
+/* Cartao que agrupa abas e formularios de login/cadastro. */
+.auth-card {
+  width: min(100%, 540px);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+/* Divide as abas de autenticacao em duas colunas iguais. */
+.auth-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  background: #edf3ff;
+}
+
+/* Estilo base dos botoes de aba. */
+.tab-btn {
+  border: none;
+  background: transparent;
+  padding: 1.1rem;
+  font-weight: 700;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+/* Aparencia da aba atualmente selecionada. */
+.tab-btn.active {
+  background: #fff;
+  color: var(--primary-dark);
+}
+
+/* Paineis de autenticacao ficam ocultos ate serem ativados. */
+.auth-panel {
+  display: none;
+  padding: 1.6rem;
+}
+
+/* Exibe somente o painel correspondente a aba ativa. */
+.auth-panel.active {
+  display: block;
+}
+
+/* Titulos dos paineis de login e cadastro. */
+.auth-panel h1,
+.auth-panel h2 {
+  margin: 0 0 1.2rem;
+  text-align: center;
+  letter-spacing: -0.04em;
+}
+
+/* Texto auxiliar centralizado abaixo dos formularios. */
+.helper-text {
+  margin: 0.8rem 0 0;
+  text-align: center;
+  color: var(--muted);
+}
+
+/* Links usados para alternar entre login e cadastro. */
+.helper-text a,
+.switch-form {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+/* Pequeno ajuste acima do grupo de opcoes de radio. */
+.radio-group {
+  margin-top: 0.3rem;
+}
+
+/* Empilha as opcoes de radio verticalmente. */
+.radio-options {
+  display: grid;
+  gap: 0.5rem;
+}
+
+/* Alinha cada radio com seu texto. */
+.radio-options label {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-weight: 500;
+}
+
+/* ==================== FOOTER ==================== */
+/* Rodape escuro com texto claro. */
+.site-footer {
+  background: #0f172a;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 1.6rem 0;
+}
+
+/* Centraliza o conteudo do rodape. */
+.footer-content {
+  text-align: center;
+}
+

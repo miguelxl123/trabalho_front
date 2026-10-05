@@ -1,0 +1,54 @@
+/* Regras aplicadas em telas medias e pequenas. */
+
+/* Em telas medias, as grades passam a usar duas colunas. */
+@media (max-width: 900px) {
+  .hero-content,
+  .card-grid.triple,
+  .card-grid.four,
+  .content-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* O destaque passa a ocupar uma unica coluna em telas menores. */
+  .hero-content {
+    grid-template-columns: 1fr;
+  }
+
+  /* Reduz a altura do painel visual para evitar excesso de espaco. */
+  .hero-card {
+    min-height: 300px;
+  }
+}
+
+/* Em celulares, o menu e os conteudos sao reorganizados verticalmente. */
+@media (max-width: 640px) {
+  /* Centraliza os links quando o menu quebra em varias linhas. */
+  .main-nav {
+    justify-content: center;
+  }
+
+  /* Todas as grades passam a ter uma unica coluna. */
+  .card-grid.triple,
+  .card-grid.four,
+  .content-grid,
+  .contribute-list {
+    grid-template-columns: 1fr;
+  }
+
+  /* Em celulares o cabecalho deixa de ficar preso no topo. */
+  .site-header {
+    position: static;
+  }
+
+  /* Empilha logo e navegacao. */
+  .nav-wrap {
+    flex-direction: column;
+    min-height: 132px;
+    padding: 1.2rem 0;
+  }
+
+  /* Diminui o espaco superior da area inicial no celular. */
+  .hero {
+    padding-top: 2.5rem;
+  }
+}
